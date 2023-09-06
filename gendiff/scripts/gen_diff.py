@@ -3,8 +3,6 @@ from pathlib import Path
 import json
 
 
-BASEDIR: Path = Path(__file__).parent.parent
-
 def main():
     parser = argparse.ArgumentParser(
         description="Compares two configuration files and shows a difference."
@@ -27,8 +25,10 @@ def generate_diff(file1, file2):
     data1 = json_load(file1)
     data2 = json_load(file2)
     agregate_data = data1.keys() | data2.keys()
+
     sorted_data = sorted(agregate_data, key=lambda x: x[0])
     strout = '{\n'
+
     for i in sorted_data:
 
         if i in data1 and i in data2:
