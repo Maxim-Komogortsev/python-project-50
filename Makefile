@@ -8,4 +8,4 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run pytest --strict --cov 
+	poetry run pytest --strict-markers --cov 

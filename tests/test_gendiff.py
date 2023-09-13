@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from gendiff.main import generate_diff
+from gendiff.core import generate_diff
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures'
 SIMPLE = FIXTURES / 'simple'
