@@ -8,4 +8,4 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run gendiff -- file1.json file2.json
+	poetry run pytest --strict --cov 

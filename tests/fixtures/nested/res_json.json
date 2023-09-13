@@ -1,0 +1,61 @@
+{
+    "common": [
+        "N",
+        {
+            "setting1": [
+                "U",
+                "Value 1"
+            ],
+            "setting2": [
+                "D",
+                "200"
+            ],
+            "setting3": [
+                "U",
+                true
+            ],
+            "setting4": [
+                "A",
+                "blah blah"
+            ],
+            "setting5": [
+                "A",
+                {
+                    "key5": "value5"
+                }
+            ],
+            "setting6": [
+                "D",
+                {
+                    "key": "value"
+                }
+            ]
+        }
+    ],
+    "group1": [
+        "N",
+        {
+            "baz": [
+                "C",
+                "bas",
+                "bars"
+            ],
+            "foo": [
+                "U",
+                "bar"
+            ]
+        }
+    ],
+    "group2": [
+        "D",
+        {
+            "abc": "12345"
+        }
+    ],
+    "group3": [
+        "A",
+        {
+            "fee": "100500"
+        }
+    ]
+}
