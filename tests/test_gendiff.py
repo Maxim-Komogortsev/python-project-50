@@ -18,6 +18,14 @@ def test_gendiff_stylish(path):
     assert got == expected
 
 
+@pytest.mark.parametrize('path', [SIMPLE])
+def test_gendiff_stylish(path):
+    with open(path / 'res_stylish.txt') as f:
+        expected = f.read()
+    got = generate_diff(path / 'before.yml', path / 'after.yml', 'stylish')
+    assert got == expected
+
+
 @pytest.mark.parametrize('path', [SIMPLE, NESTED])
 def test_gendiff_plain(path):
     with open(path / 'res_plain.txt') as f:

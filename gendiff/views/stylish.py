@@ -29,6 +29,7 @@ EXAMPLE
 }
 """
 
+from collections import OrderedDict
 from gendiff import diff
 
 status_maps = {
@@ -41,17 +42,22 @@ status_maps = {
 first_line = "{ind}{sign} {key}: {{\n"
 
 
-def render_value(val, indent) -> str:
+def render_value(val, indent = 0) -> str:
     if isinstance(val, dict):
         ind = '  ' * indent
         closing_bracket = '  ' * (indent - 1)
         temp = []
         for ke, va in val.items():
+            if type(va) == bool:
+                va = str(va).lower() 
             temp.append("{ind}  {key}: {val}\n".format(
                 ind=ind, key=ke, val=va))
         conts = ''.join(temp)
         res = "{{\n{conts}{ind}}}".format(conts=conts, ind=closing_bracket)
         return res
+    if type(val) == bool:
+        val = str(val).lower()
+
     return val
 
 
@@ -65,9 +71,11 @@ def stylish_view(dif, depth=1) -> list:
             res += stylish_view(values[0], depth + 2)
             res.append(ind * 2 + "}\n")
         elif status == diff.CHANGED:
+            pre = render_value(values[0])
+            after = render_value(values[1])
             res.append(status_maps[status].format(
                 ind=ind, key=k,
-                before=values[0], after=values[1]))
+                before=pre, after=after))
         else:
             val = render_value(values[0], depth + 2)
             res.append(status_maps[status].format(
@@ -79,3 +87,10 @@ def render(diff) -> str:
     contents = ''.join(stylish_view(diff))
     string = "{{\n{contents}}}".format(contents=contents)
     return string
+
+
+if __name__ == '__main__':
+    test_di = {
+        'Pls': True
+    }
+    print(render(OrderedDict([('key', ('C', True, False)), ('seckey', ('A', 12))])))

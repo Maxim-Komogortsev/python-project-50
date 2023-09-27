@@ -43,3 +43,11 @@ def get_diff(before: dict, after: dict) -> dict:
             diff[key] = (CHANGED, before_val, after_val)
 
     return OrderedDict(sorted(diff.items(), key=lambda kv: kv[0]))
+
+if __name__ == '__main__':
+
+    print(get_diff(
+        {'key': True},
+        {'key': False,
+         'seckey': 12}
+    ))
