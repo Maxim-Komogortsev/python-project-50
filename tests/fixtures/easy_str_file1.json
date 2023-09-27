@@ -1,0 +1,8 @@
+{
+  "setting1": "Value1",
+  "setting2": true,
+  "setting3": {
+    "subsetting1": "yes",
+    "subsetting2": 123
+  }
+}

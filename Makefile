@@ -1,14 +1,24 @@
+install:
+	poetry install
+
 build:
 	poetry build
 
 package-install:
-	python3 -m pip install --user dist/hexlet_code-0.1.0-py3-none-any.whl
+	python3 -m pip install --user dist/*.whl
 
-package-reinstall:
-	python3 -m pip install --force-reinstall --user dist/hexlet_code-0.1.0-py3-none-any.whl
-	
+setup: install build package-install
+
+test:
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=gendiff --cov-report xml
+
 lint:
 	poetry run flake8 gendiff
 
-test:
-	poetry run pytest --strict-markers --cov 
+selfcheck:
+	poetry check
+
+check: selfcheck test lint
