@@ -41,6 +41,13 @@ status_maps = {
 
 first_line = "{ind}{sign} {key}: {{\n"
 
+def correct_yml(v):
+    if type(v) == bool:
+        return str(v).lower()
+    if v == None:
+        return 'null'
+
+    return v
 
 def render_value(val, indent = 0) -> str:
     if isinstance(val, dict):
@@ -48,15 +55,14 @@ def render_value(val, indent = 0) -> str:
         closing_bracket = '  ' * (indent - 1)
         temp = []
         for ke, va in val.items():
-            if type(va) == bool:
-                va = str(va).lower() 
+            va = correct_yml(va)
             temp.append("{ind}  {key}: {val}\n".format(
                 ind=ind, key=ke, val=va))
         conts = ''.join(temp)
         res = "{{\n{conts}{ind}}}".format(conts=conts, ind=closing_bracket)
         return res
-    if type(val) == bool:
-        val = str(val).lower()
+    
+    val = correct_yml(val)
 
     return val
 
